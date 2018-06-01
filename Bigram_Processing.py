@@ -22,11 +22,14 @@ def smoother(word_b, word_a, bigram_data, succ_counter, pred_counter, total_bigr
 
 PATH = os.getcwd()
 
+
 with open(PATH + '\\data\\proc_sen.json', 'r+') as fp:
     sentences = json.load(fp)
 
+
 with open(PATH + '\\data\\req_lemmas.json', 'r+') as fp:
     req_lemmas = json.load(fp)
+
 
 req_lemmas = set(req_lemmas.keys())
 bigram_data['^'] = defaultdict(int)
@@ -34,7 +37,6 @@ bigram_data['$'] = defaultdict(int)
 
 for lemma in req_lemmas:
     bigram_data[lemma] = defaultdict(int)
-    smoothed_data = defaultdict(int)
 
 print('processing sentences')
 
@@ -69,7 +71,7 @@ print('finished finding values')
 print('procesing bigram values')
 
 req_data = dict()
-
+full_data = dict()
 for word_a in bigram_data.keys():
 
     smoothed_data = dict()
@@ -80,8 +82,12 @@ for word_a in bigram_data.keys():
     data = sorted([(smoothed_data[l], l) for l in smoothed_data.keys()], key=lambda x: x[0], reverse=True)
 
     req_data[word_a] = data[:40]
+    full_data[word_a] = data
 
 print('finished procesing bigram values')
 
 with open(PATH + '\\data\\bigram_data.json', 'w+') as fp:
     json.dump(req_data, fp)
+
+with open(PATH + '\\data\\full_bigram_data.json', 'w+') as fp:
+    json.dump(full_data, fp)

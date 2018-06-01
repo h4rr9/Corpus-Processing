@@ -2,7 +2,6 @@ from operator import itemgetter
 import os
 import json
 import nltk
-from nltk import SnowballStemmer
 
 
 PATH = os.getcwd()

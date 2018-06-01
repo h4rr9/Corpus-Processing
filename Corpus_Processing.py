@@ -18,8 +18,8 @@ with open(PATH + '\\data\\req_lemmas.json', 'r+') as fp:
 print('finished generating word configs')
 print('generating books')
 
-#Book1 = book1(50, 40, word_config)
+Book1 = book1(50, 40, word_config)
 Book2 = book4(50, 40, word_config)
-#Book3 = book5(50, 40, word_config)
+Book3 = book5(50, 40, word_config)
 
 print('finished generating books')
